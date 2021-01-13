@@ -97,13 +97,22 @@
 		<Unit filename="/root/Dev/CLionProjects/MD_Objective/MDLib/BasicObjects/ThreeDimValue.h">
 			<Option target="MD_Objective"/>
 		</Unit>
+		<Unit filename="/root/Dev/CLionProjects/MD_Objective/MDLib/MDLib.h">
+			<Option target="MD_Objective"/>
+		</Unit>
 		<Unit filename="/root/Dev/CLionProjects/MD_Objective/MDLib/PhysicalObjects/BodyWithForceField.h">
 			<Option target="MD_Objective"/>
 		</Unit>
 		<Unit filename="/root/Dev/CLionProjects/MD_Objective/MDLib/PhysicalObjects/DistributionFunctions.h">
 			<Option target="MD_Objective"/>
 		</Unit>
+		<Unit filename="/root/Dev/CLionProjects/MD_Objective/MDLib/PhysicalObjects/Integrators.h">
+			<Option target="MD_Objective"/>
+		</Unit>
 		<Unit filename="/root/Dev/CLionProjects/MD_Objective/MDLib/PhysicalObjects/Lennard_Jones_potential.h">
+			<Option target="MD_Objective"/>
+		</Unit>
+		<Unit filename="/root/Dev/CLionProjects/MD_Objective/UnitTest/Test.h">
 			<Option target="MD_Objective"/>
 		</Unit>
 		<Unit filename="/root/Dev/CLionProjects/MD_Objective/main.cpp">

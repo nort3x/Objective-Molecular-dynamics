@@ -8,6 +8,7 @@
 
 #include "../PhysicalObjects/Lennard_Jones_potential.h"
 
+
 struct ArgonAtom:public BodyWithLJP<double>{
 
     constexpr static const double ArgonMass = 1;
@@ -16,6 +17,9 @@ struct ArgonAtom:public BodyWithLJP<double>{
     constexpr static const double rc = 1;
     // more stuff
     ArgonAtom() : BodyWithLJP(eps) {
+
+    }
+    ArgonAtom(const ArgonAtom& atm):BodyWithLJP<double>(atm){
 
     }
 

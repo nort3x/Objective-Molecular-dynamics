@@ -1,12 +1,15 @@
 #include <iostream>
 #include <iomanip>
-#include "MDLib/Argon//ArgonGasWorld.h"
+#include "MDLib/BasicObjects/BasicWorld.h"
+#include "MDLib/Argon/ArgonGasWorld.h"
 int main() {
+    using namespace std;
 
-    for (int i = 0; i < 10; ++i) {
-        ArgonGasWorld agw(100,std::pow(10,-i));
-        agw.RandomizePosition(0);
-        std::cout<<std::setprecision(10)<<agw.getTotalPotentialEnergy()<<"\n";
-    }
+   ArgonGasWorld ag = ArgonGasWorld(10,12);
+   ag.RandomizePosition();
+   ag.RandomizeVelocity(1);
     return 0;
 }
+
+
+

@@ -12,4 +12,5 @@ add_executable(MD_Objective
         MDLib/Argon/ArgonAtom.h
         MDLib/PhysicalObjects/BodyWithForceField.h
         MDLib/PhysicalObjects/Lennard_Jones_potential.h
-        MDLib/PhysicalObjects/DistributionFunctions.h)
+        MDLib/MathObjects/DistributionFunctions.h
+        MDLib/MDLib.h)

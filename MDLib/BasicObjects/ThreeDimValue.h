@@ -34,6 +34,12 @@ template<typename ValType> struct ThreeDimValue{
         return rightVec;
     }
 
+    void operator+=(const ThreeDimValue<ValType> &rightvec){
+        x1 += rightvec.x1;
+        x2 += rightvec.x2;
+        x3 += rightvec.x3;
+    }
+
     // vector subtraction
     ThreeDimValue<ValType> operator-(ThreeDimValue<ValType> rightVec){
         return   operator+((-1)*rightVec);

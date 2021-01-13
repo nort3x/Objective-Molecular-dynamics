@@ -17,6 +17,8 @@ cstdlib
 /root/Dev/CLionProjects/MD_Objective/MDLib/BasicObjects/BasicWorld.h
 ArgonAtom.h
 /root/Dev/CLionProjects/MD_Objective/MDLib/Argon/ArgonAtom.h
+../PhysicalObjects/Integrators.h
+/root/Dev/CLionProjects/MD_Objective/MDLib/PhysicalObjects/Integrators.h
 ../PhysicalObjects/DistributionFunctions.h
 /root/Dev/CLionProjects/MD_Objective/MDLib/PhysicalObjects/DistributionFunctions.h
 
@@ -48,6 +50,8 @@ cmath
 ../BasicObjects/ThreeDimValue.h
 /root/Dev/CLionProjects/MD_Objective/MDLib/BasicObjects/ThreeDimValue.h
 
+/root/Dev/CLionProjects/MD_Objective/MDLib/PhysicalObjects/Integrators.h
+
 /root/Dev/CLionProjects/MD_Objective/MDLib/PhysicalObjects/Lennard_Jones_potential.h
 BodyWithForceField.h
 /root/Dev/CLionProjects/MD_Objective/MDLib/PhysicalObjects/BodyWithForceField.h
@@ -57,6 +61,8 @@ iostream
 -
 iomanip
 -
+MDLib/BasicObjects/BasicWorld.h
+/root/Dev/CLionProjects/MD_Objective/MDLib/BasicObjects/BasicWorld.h
 MDLib/Argon/ArgonGasWorld.h
 /root/Dev/CLionProjects/MD_Objective/MDLib/Argon/ArgonGasWorld.h
 

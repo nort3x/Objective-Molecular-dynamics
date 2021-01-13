@@ -11,6 +11,7 @@
 #ifndef MD_OBJECTIVE_BASICWORLD_H
 #define MD_OBJECTIVE_BASICWORLD_H
 #include <stdexcept>
+#include <cstring>
 
 template<typename ValType> class BasicWorld {
 private:
@@ -18,12 +19,22 @@ private:
 protected:
     ValType* BodyList;
 public:
-    explicit BasicWorld(const unsigned int& NumberOfBodies){
+    explicit BasicWorld(const unsigned int& NumberOfBodies){    // real constructor
         size = NumberOfBodies;
         BodyList = new ValType[size];
     };
 
-    ~BasicWorld(){
+    BasicWorld(){                // empty constructor
+        size = 0;
+        BodyList = nullptr;
+    }
+
+     BasicWorld(const BasicWorld<ValType>& bw){     //copy constructor
+        size = bw.size;
+        BodyList = new ValType[size];
+        std::memcpy(BodyList,bw.BodyList,bw.size);
+    }
+    ~BasicWorld(){                        // destructor
         delete [] BodyList;
     };
 

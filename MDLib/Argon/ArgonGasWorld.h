@@ -5,67 +5,15 @@
 #ifndef MD_OBJECTIVE_ARGONGASWORLD_H
 #define MD_OBJECTIVE_ARGONGASWORLD_H
 
-#include <cstdlib>
-#include "../BasicObjects/BasicWorld.h"
+#include "../PhysicalObjects/GasWorld.h"
 #include "ArgonAtom.h"
-#include "../PhysicalObjects/DistributionFunctions.h"
 
-class ArgonGasWorld: public BasicWorld<ArgonAtom>{
-private:
-    double time;
-    double BoxLength;
+class ArgonGasWorld: public GasWorld<ArgonAtom,double>{
 public:
 
-    explicit ArgonGasWorld(const unsigned int &numberOfBodies,double BoxLength) : BasicWorld(numberOfBodies){
+    explicit ArgonGasWorld(const unsigned int &numberOfBodies,double BoxLength) : GasWorld<ArgonAtom,double>(numberOfBodies,BoxLength){
         this->BoxLength = BoxLength;
     }
-
-    // populate position
-    void RandomizePosition(double rc=ArgonAtom::rc){
-        for(int i=1;i<=getSize();i++){
-            TRY:
-            operator[](i).Position = {BoxLength*(double)std::rand()/RAND_MAX,
-                                    BoxLength*(double)std::rand()/RAND_MAX,
-                                    BoxLength*(double)std::rand()/RAND_MAX };
-            if(BadChoiceOfPosition(i,rc))
-                goto TRY;
-
-        }
-    }
-    bool BadChoiceOfPosition(int i,double rc){
-
-        double rc_squared = std::pow(rc,2);
-        for(int j=1;j<i;j++){
-            if((operator[](i).Position -operator[](j).Position).getNormSqure()<=rc_squared){ // always try to avoid sqrt!
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // populate velocity
-    void RandomizeVelocity(double Tempture,double VelocityStepSize,DistributionFunction df,double VelocityMean=1){
-        switch (df) {
-            case uniform:
-                for (int i = 0; i <getSize() ; ++i) {
-                    DirectAccess()[i].Velocity = (VelocityMean/getSize())*RandomNormalizedVector<double>();
-                }
-                break;
-            case Boltzmann:   // Boltzmann doesnt work , need more testing
-                int i=1;
-                double vel =0,O;
-                BoltzmannDist<double> bd(ArgonAtom::ArgonMass,Tempture);
-                while (i<getSize()){
-                    O = bd.getFraction(vel,vel+VelocityStepSize,VelocityStepSize);
-                    for (int j = i; j <O; ++j){
-                        operator[](j).Velocity = (vel + (double )VelocityStepSize/2) * (RandomNormalizedVector<double>());
-                    }
-                    i+= (int)O;
-                    vel += VelocityStepSize;
-                }
-                break;
-        }
-    };
 
     double getTotalKineticEnergy(){
         double total_V2 =0;
@@ -84,6 +32,7 @@ public:
         }
         return Vt;
     }
+
 };
 
 

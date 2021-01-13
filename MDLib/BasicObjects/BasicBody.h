@@ -10,7 +10,8 @@
 
 #include "ThreeDimValue.h"
 
-template<typename ValType> struct BasicBody{
+template<typename ValType>
+struct BasicBody{
 
     // most fundamental set of attributes a body can have
     ThreeDimValue<ValType> Position;
