@@ -14,9 +14,10 @@
 
 #include "PhysicalObjects/Lennard_Jones_potential.h"
 #include "PhysicalObjects/BodyWithForceField.h"
+#include "PhysicalObjects/MultiBodyWorld.h"
+
 #include "MathObjects/DistributionFunctions.h"
-
-
-
+#include "MathObjects/BasicIntegrator.h"
+#include "MathObjects/VerletIntegrator.h"
 
 #endif //MD_OBJECTIVE_MDLIB_H

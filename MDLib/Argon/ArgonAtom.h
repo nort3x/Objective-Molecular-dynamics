@@ -11,8 +11,8 @@
 
 struct ArgonAtom:public BodyWithLJP<double>{
 
-    constexpr static const double ArgonMass = 1;
-    constexpr static const double ArgonRad = 1;
+    constexpr static const double mass = 1;
+    constexpr static const double Rad = 1;
     constexpr static const double eps = 1;
     constexpr static const double rc = 1;
     // more stuff

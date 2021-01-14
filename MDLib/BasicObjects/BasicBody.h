@@ -16,8 +16,7 @@ struct BasicBody{
     // most fundamental set of attributes a body can have
     ThreeDimValue<ValType> Position;
     ThreeDimValue<ValType> Velocity;
-    ThreeDimValue<ValType> Force;
-
+    ThreeDimValue<ValType> Acceleration;
 };
 
 

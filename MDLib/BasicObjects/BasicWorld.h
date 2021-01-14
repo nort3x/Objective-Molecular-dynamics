@@ -14,11 +14,11 @@
 #include <cstring>
 
 template<typename ValType> class BasicWorld {
-private:
-    unsigned int size;
 protected:
-    ValType* BodyList;
+    unsigned int size;
+
 public:
+    ValType* BodyList;
     explicit BasicWorld(const unsigned int& NumberOfBodies){    // real constructor
         size = NumberOfBodies;
         BodyList = new ValType[size];
@@ -47,6 +47,8 @@ public:
     ValType* DirectAccess(){
         return BodyList;
     };
+
+
 
 
     // operators here we can have more natural feeling in selecting particles (also range safe)

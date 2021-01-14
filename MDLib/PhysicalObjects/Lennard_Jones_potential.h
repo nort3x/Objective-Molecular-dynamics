@@ -19,7 +19,8 @@ template <typename ValType> struct BodyWithLJP: BodyWithForceField<ValType>{
                 return {0,0,0}; // no force on itself!
             } else{
                 ThreeDimValue<double> rmrp = Position - body.Position;
-                return (4*eps)*(6*std::pow(rmrp.getNormSqure(),-4) - 12*std::pow(rmrp.getNormSqure(),-7))*rmrp;
+                ThreeDimValue<double> ans = (4*eps)*(6*std::pow(rmrp.getNormSqure(),-4) - 12*std::pow(rmrp.getNormSqure(),-7))*rmrp;
+                return ans;
             }
         };
 
@@ -37,7 +38,7 @@ template <typename ValType> struct BodyWithLJP: BodyWithForceField<ValType>{
         this->eps = b.eps;
         this->Velocity = b.Velocity;
         this->Position = b.Position;
-        this->Force = b.Force;
+        this->Acceleration = b.Acceleration;
 
         forceField = [&](const BasicBody<double> &body, const double& time)->ThreeDimValue<double>{
             if(&body==this || &body == &b){

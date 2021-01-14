@@ -75,7 +75,7 @@ bool ArgonAtomTest(){
 }
 
 bool GasWorld_test(){
-    GasWorld<ArgonAtom,double> gw(10,10);
+    MultiBodyWorld<ArgonAtom,double> gw(10, 10);
     gw.RandomizePosition();
     return true;
 }
@@ -84,9 +84,17 @@ bool ArgonGasWorld_test(){
     ArgonGasWorld ag(10,12);
     ag.RandomizeVelocity(1);
     ag.RandomizePosition();
-    ag.updateForce();
-   double x =  ag.getTotalPotentialEnergy();
+    ag.updateAccelerationField();
+    double x =  ag.getTotalPotentialEnergy();
     double x2 = ag.getTotalKineticEnergy();
+    return true;
+}
+
+bool VerletTest(){
+    MultiBodyWorld<ArgonAtom,double> atm(10,10);
+    atm.RandomizePosition();
+    VerletIntegrator<ArgonAtom,double> v(&atm,0.01);
+    v.timeElapse(0.01);
     return true;
 }
 
@@ -94,13 +102,14 @@ bool ArgonGasWorld_test(){
 int main(){
     using namespace std;
 
-    cout<< "ThreeDim: "<<Check(ThreeDimValue_test())<<"\n";
-    cout<< "BasicWorld: "<<Check(BasicWorld_test())<<"\n";
-    cout<< "BodyWithForce: "<<Check(BodyWithForceField_test())<<"\n";
-    cout<< "BodyWithLJP: "<<Check(BodyWithLJP_test())<<"\n";
-    cout<< "ArgonAtom: "<<Check(ArgonAtomTest())<<"\n";
-    cout<< "GasWorld: "<<Check(GasWorld_test())<<"\n";
-    cout<< "ArgonGasWorld: "<<Check(ArgonGasWorld_test())<<"\n";
+//    cout<< "ThreeDim: "<<Check(ThreeDimValue_test())<<"\n";
+//    cout<< "BasicWorld: "<<Check(BasicWorld_test())<<"\n";
+//    cout<< "BodyWithForce: "<<Check(BodyWithForceField_test())<<"\n";
+//    cout<< "BodyWithLJP: "<<Check(BodyWithLJP_test())<<"\n";
+//    cout<< "ArgonAtom: "<<Check(ArgonAtomTest())<<"\n";
+//    cout<< "MultiBodyWorld: "<<Check(GasWorld_test())<<"\n";
+//    cout<< "ArgonGasWorld: "<<Check(ArgonGasWorld_test())<<"\n";
+    cout<< "VerletMethod: "<<Check(VerletTest())<<"\n";
 
 
     return 0;
