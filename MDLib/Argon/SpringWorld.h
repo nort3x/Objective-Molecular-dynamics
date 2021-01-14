@@ -14,9 +14,11 @@ class SpringWorld:public MultiBodyWorld<SpringAtom,double>{
 public:
     SpringWorld(const unsigned int &numberOfBodies, const double &boxLength) : MultiBodyWorld(numberOfBodies, boxLength) {
         BodyList[0].Position = {1,0,0};
-        BodyList[1].Position = {0,0,0};
+        BodyList[0].Velocity = {+0.5,0,0};
+        BodyList[1].Velocity = {-0.5,0.5};
+        BodyList[1].Position = {-1,0,0};
 
-        bs = new VerletIntegrator<SpringAtom,double>(this,0.01);
+        bs = new VerletIntegrator<SpringAtom,double>(this,0.001);
     }
 
     void ElapseInTime(const double & HowMuch, double dt){
@@ -41,7 +43,7 @@ public:
         double Vt=0;
         for (int i = 0; i < getSize(); ++i) {
             for (int j = 0; j< getSize(); ++j) {
-                Vt+=BodyList[i].potentialField(BodyList[j],time);
+                Vt+=BodyList[i].PotentialField(BodyList[j], time);
             }
         }
         return Vt;

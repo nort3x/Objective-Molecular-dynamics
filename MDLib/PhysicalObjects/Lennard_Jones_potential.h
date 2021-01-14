@@ -7,14 +7,14 @@
 #include "BodyWithForceField.h"
 template <typename ValType> struct BodyWithLJP: BodyWithForceField<ValType>{
 
-    using BodyWithForceField<ValType>::forceField;
-    using BodyWithForceField<ValType>::potentialField;
+    using BodyWithForceField<ValType>::AcclerationField;
+    using BodyWithForceField<ValType>::PotentialField;
     using BodyWithForceField<ValType>::Position;
     ValType eps;
 
     explicit BodyWithLJP(ValType eps1){
         this->eps = eps1;
-        forceField = [&](const BasicBody<double> &body, const double& time)->ThreeDimValue<double>{
+        AcclerationField = [&](const BasicBody<double> &body, const double& time)->ThreeDimValue<double>{
             if(&body==this){
                 return {0,0,0}; // no force on itself!
             } else{
@@ -24,7 +24,7 @@ template <typename ValType> struct BodyWithLJP: BodyWithForceField<ValType>{
             }
         };
 
-        potentialField = [&](const BasicBody<double> &body, const double& time)->double{
+        PotentialField = [&](const BasicBody<double> &body, const double& time)->double{
             if(&body==this){
                 return 0; // no potential on itself!
             } else{
@@ -40,7 +40,7 @@ template <typename ValType> struct BodyWithLJP: BodyWithForceField<ValType>{
         this->Position = b.Position;
         this->Acceleration = b.Acceleration;
 
-        forceField = [&](const BasicBody<double> &body, const double& time)->ThreeDimValue<double>{
+        AcclerationField = [&](const BasicBody<double> &body, const double& time)->ThreeDimValue<double>{
             if(&body==this || &body == &b){
                 return {0,0,0}; // no force on itself!
             } else{
@@ -49,7 +49,7 @@ template <typename ValType> struct BodyWithLJP: BodyWithForceField<ValType>{
             }
         };
 
-        potentialField = [&](const BasicBody<double> &body, const double& time)->double{
+        PotentialField = [&](const BasicBody<double> &body, const double& time)->double{
             if(&body==this || &body == &b){
                 return 0; // no potential on itself!
             } else{

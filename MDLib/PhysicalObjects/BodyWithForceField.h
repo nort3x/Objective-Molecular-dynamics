@@ -9,8 +9,8 @@
 #include "../BasicObjects/BasicBody.h"
 
 template<typename T> struct BodyWithForceField: BasicBody<T>{
-    std::function<ThreeDimValue<T>(const BasicBody<T>&,const T&)> forceField;
-    std::function<T(const BasicBody<T>&,const T&)> potentialField;
+    std::function<ThreeDimValue<T>(const BasicBody<T>&,const T&)> AcclerationField;
+    std::function<T(const BasicBody<T>&,const T&)> PotentialField;
 };
 
 

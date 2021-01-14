@@ -12,7 +12,7 @@ class SpringAtom:public BodyWithForceField<double>{
 public:
     double k = 1;
     SpringAtom(){
-        forceField = [&](const BasicBody<double>& body,const double &time)->ThreeDimValue<double>{
+        AcclerationField = [&](const BasicBody<double>& body, const double &time)->ThreeDimValue<double>{
             if(&body == this){
                 return {0,0,0};
             }
@@ -22,7 +22,16 @@ public:
             }
         };
 
-        potentialField = [&](const BasicBody<double>& body,const double &time)->double{
+//        AcclerationField = [&](const BasicBody<double>& body, const double &time)->ThreeDimValue<double>{
+//            if(&body != this){
+//                return {0,0,0};
+//            }
+//            else{
+//                return -k*Position;  // F/m = -k(x,y,z)
+//            }
+//        };
+
+        PotentialField = [&](const BasicBody<double>& body, const double &time)->double{
             if(&body == this){
                 return 0;
             }
@@ -31,6 +40,16 @@ public:
                 return 0.5*k*rp.getNormSqure();
             }
         };
+
+
+//        PotentialField = [&](const BasicBody<double>& body, const double &time)->double{
+//            if(&body != this){
+//                return 0;
+//            }
+//            else{
+//                return 0.5*k*Position.getNormSqure();
+//            }
+//        };
     }
 
 };

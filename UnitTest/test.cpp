@@ -39,7 +39,7 @@ bool BasicWorld_test(){
 bool BodyWithForceField_test(){
     BodyWithForceField<double> bwf;
     BasicBody<double> body = {1,1,1};
-    bwf.forceField = [&bwf](const BasicBody<double>& body,const double& t)->ThreeDimValue<double>{
+    bwf.AcclerationField = [&bwf](const BasicBody<double>& body, const double& t)->ThreeDimValue<double>{
         if(&bwf==&body){
             return {0,0,0};
         } else{
@@ -47,7 +47,7 @@ bool BodyWithForceField_test(){
         }
     };
 
-    bool c1 =  (bwf.forceField(bwf,0).x1 == 0)&&((bwf.forceField(body,0).x1 == 1));
+    bool c1 = (bwf.AcclerationField(bwf, 0).x1 == 0) && ((bwf.AcclerationField(body, 0).x1 == 1));
     return c1;
 }
 
@@ -56,12 +56,12 @@ bool BodyWithLJP_test(){
     b1.Position = {1,1,1};
     b2.Position = {1.1,1,1};
     BodyWithLJP<double> b3(b1);
-    bool c1=  (b1.forceField(b1,0).x1==0)&&(b1.forceField(b2,0).x1!=0);
-    bool c3=  (b3.forceField(b3,0).x1 ==0);
-    double x1 =  b3.forceField(b2,0).x1;
-    double x2 = b1.forceField(b2,0).x1;
-    bool c2 = (b3.forceField(b1,0).x1 == 0);
-    bool c4 = (b1.forceField(b3,0).x1 == 0);
+    bool c1= (b1.AcclerationField(b1, 0).x1 == 0) && (b1.AcclerationField(b2, 0).x1 != 0);
+    bool c3=  (b3.AcclerationField(b3, 0).x1 == 0);
+    double x1 =  b3.AcclerationField(b2, 0).x1;
+    double x2 = b1.AcclerationField(b2, 0).x1;
+    bool c2 = (b3.AcclerationField(b1, 0).x1 == 0);
+    bool c4 = (b1.AcclerationField(b3, 0).x1 == 0);
     bool c5=  (x1==x2);
     return c1&&c3&&c5&&c2&&!c4;
 }
@@ -70,7 +70,7 @@ bool ArgonAtomTest(){
     a1.Position = {1,1,1};
     ArgonAtom a2;
     ArgonAtom a3 = a1;
-    bool c1 = a1.forceField(a2,0).x1 == a1.forceField(a2,0).x1;
+    bool c1 = a1.AcclerationField(a2, 0).x1 == a1.AcclerationField(a2, 0).x1;
     return c1;
 }
 

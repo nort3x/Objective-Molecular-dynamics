@@ -37,7 +37,7 @@ public:
         double Vt=0;
         for (int i = 0; i < getSize(); ++i) {
             for (int j = 0; j < i; ++j) {
-                Vt+=DirectAccess()[i].potentialField(DirectAccess()[j],time);
+                Vt+=DirectAccess()[i].PotentialField(DirectAccess()[j], time);
             }
         }
         return Vt;
