@@ -15,7 +15,7 @@ public:
     SpringWorld(const unsigned int &numberOfBodies, const double &boxLength) : MultiBodyWorld(numberOfBodies, boxLength) {
         BodyList[0].Position = {1,0,0};
         BodyList[0].Velocity = {+0.5,0,0};
-        BodyList[1].Velocity = {-0.5,0.5,0.4};
+        BodyList[1].Velocity = {-0.5,0,-0.4};
         BodyList[1].Position = {-1,0,0};
 
         bs = new VerletIntegrator<SpringAtom,double>(this,0.001);

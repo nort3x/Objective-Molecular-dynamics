@@ -18,7 +18,7 @@ int main() {
     ofstream f;
 
     SpringWorld agw(2,1);
-    agw.setDynamics(0.01,new VerletIntegrator<SpringAtom,double>(&agw,0.01),new RigidBoxConstraint<SpringAtom,double>(&agw));
+    agw.setDynamics(0.01,new VerletIntegrator<SpringAtom,double>(&agw,0.01),new FreeSpace<SpringAtom>());
     while (true){
         f.open("/root/Desktop/d.dat",ios_base::app);
         agw.ElapseInTime(0.01,0.01);
