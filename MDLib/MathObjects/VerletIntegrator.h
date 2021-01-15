@@ -12,13 +12,19 @@
 
 template <typename T,typename K>
 class VerletIntegrator : public BasicIntegrator<K> {
-    MultiBodyWorld<T,K>* world;
+    MultiBodyWorld<T,K>* world = nullptr;
+    K dt;
 public:
-    VerletIntegrator(MultiBodyWorld<T,K>* world,const K& dt){
-        static_assert(std::is_base_of<BasicBody<K>,T>::value,"Should be derived from BasicBody");
-        this->world = world;
+
+    void init()override{
         world->updateAccelerationField();
         FirstIteration(dt);         // shift FutureBuffer a little
+    }
+
+    VerletIntegrator(MultiBodyWorld<T,K>* world_ref, K dt){
+        static_assert(std::is_base_of<BasicBody<K>,T>::value,"Should be derived from BasicBody");
+        this->world = world_ref;
+        this->dt = dt;
     }
 
     ~VerletIntegrator() override{
@@ -44,6 +50,9 @@ private:
         for (int i = 0; i < world->getSize(); ++i) {
             world->BodyList[i].Velocity += 0.5*dt*(world->BodyList[i].Acceleration);
             // v(t0+dt) = vt0 + at0+a(t0+dt)*dt/2;
+        }
+        for (int i = 0; i < world->getSize(); ++i) {
+            world->ApplyConstraint(world->BodyList[i]);
         }
     }
 };

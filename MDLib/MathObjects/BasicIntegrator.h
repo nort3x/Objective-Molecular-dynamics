@@ -9,6 +9,7 @@ template <typename T> class BasicIntegrator{
 public:
     virtual ~BasicIntegrator()= default;;
     virtual void timeElapse(const T& t)=0;
+    virtual void init()=0;
 };
 
 

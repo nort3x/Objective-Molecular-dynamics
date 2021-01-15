@@ -6,8 +6,7 @@
 #define MD_OBJECTIVE_TEST_INTEGRATORS_H
 
 enum Integrator{
-    Verlet_speed
-
+    VelocityVerlet
 };
 
 

@@ -9,6 +9,7 @@
 #include "../MathObjects/DistributionFunctions.h"
 #include "../Enums/Integrators.h"
 #include "../MathObjects/BasicIntegrator.h"
+#include "../MathObjects/BasicConstraint.h"
 
 template <typename BodyType,typename percision>
 class MultiBodyWorld:public BasicWorld<BodyType>{
@@ -16,6 +17,8 @@ class MultiBodyWorld:public BasicWorld<BodyType>{
 protected:
     percision time=0;
     percision BoxLength;
+    BasicIntegrator<percision> *basicIntegrator= nullptr;
+    BasicConstraint<BodyType> *constraint = nullptr;
 public:
 
     explicit MultiBodyWorld(const unsigned int& NumberOfBodies, const percision& BoxLength): BasicWorld<BodyType>(NumberOfBodies){
@@ -23,16 +26,21 @@ public:
         this->BoxLength = BoxLength;
     }
 
-    double getTime(){
+    ~MultiBodyWorld(){
+        delete basicIntegrator;
+        delete constraint;
+    }
+
+    percision getTime(){
         return time;
     }
 
-    void RandomizePosition(double rc=1){
+    void RandomizePosition(percision rc=1){
         for(int i=1;i<=this->getSize();i++){
             TRY:
-            this->operator[](i).Position = {BoxLength*(double)std::rand()/RAND_MAX,
-                                      BoxLength*(double)std::rand()/RAND_MAX,
-                                      BoxLength*(double)std::rand()/RAND_MAX };
+            this->operator[](i).Position = {BoxLength*(percision)std::rand()/RAND_MAX,
+                                      BoxLength*(percision)std::rand()/RAND_MAX,
+                                      BoxLength*(percision)std::rand()/RAND_MAX };
             if(BadChoiceOfPosition(i,rc))
                 goto TRY;
 
@@ -40,9 +48,9 @@ public:
     }
 
 
-    void RandomizeVelocity(double VelocityMean){
+    void RandomizeVelocity(percision VelocityMean){
         for (int i = 0; i <this->getSize() ; ++i) {
-            this->DirectAccess()[i].Velocity = (VelocityMean/this->getSize())*RandomNormalizedVector<double>();
+            this->DirectAccess()[i].Velocity = (VelocityMean/this->getSize())*RandomNormalizedVector<percision>();
         }
     };
 
@@ -56,11 +64,33 @@ public:
         }
     }
 
+    void setDynamics(const percision & dt,BasicIntegrator<percision> *heap_alloc_basicintegrator_type,BasicConstraint<BodyType>* constraint){
+        this->constraint = constraint;
+        basicIntegrator = heap_alloc_basicintegrator_type;
+        basicIntegrator->init();
+    }
+
+    void ElapseInTime(const percision & HowMuch, percision dt){
+        int n = std::abs(HowMuch/dt)+1;
+        dt = HowMuch/n;
+        for (int i = 0; i < n; ++i) {
+            basicIntegrator->timeElapse(dt);
+            time += dt;
+        }
+    }
+
+    void ApplyConstraint(BodyType& body){
+        constraint->check(body);
+    }
+
+    percision getBoxLength(){
+        return BoxLength;
+    }
 
 private:
     bool BadChoiceOfPosition(int i,percision rc){
 
-        double rc_squared = std::pow(rc,2);
+        percision rc_squared = std::pow(rc,2);
         for(int j=1;j<i;j++){
             if((this->operator[](i).Position -this->operator[](j).Position).getNormSqure()<=rc_squared){ // always try to avoid sqrt!
                 return true;

@@ -19,5 +19,7 @@
 #include "MathObjects/DistributionFunctions.h"
 #include "MathObjects/BasicIntegrator.h"
 #include "MathObjects/VerletIntegrator.h"
-
+#include "MathObjects/FreeSpace.h"
+#include "MathObjects/BasicConstraint.h"
+#include "MathObjects/RigidBoxConstraint.h"
 #endif //MD_OBJECTIVE_MDLIB_H
