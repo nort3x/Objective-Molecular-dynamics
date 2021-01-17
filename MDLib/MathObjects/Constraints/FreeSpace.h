@@ -5,7 +5,7 @@
 #ifndef MD_OBJECTIVE_TEST_FREESPACE_H
 #define MD_OBJECTIVE_TEST_FREESPACE_H
 #include "BasicConstraint.h"
-#include "../PhysicalObjects/MultiBodyWorld.h"
+#include "../../PhysicalObjects/MultiBodyWorld.h"
 template <typename T>
 class FreeSpace:public BasicConstraint<T>{
 public:

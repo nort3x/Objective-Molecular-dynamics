@@ -8,41 +8,44 @@ add_executable(MD_Objective
 
         MDLib/MDLib.h
 
-        MDLib/Argon/ArgonAtom.h
-        MDLib/Argon/ArgonGasWorld.h
+        MDLib/PreBuilt/Atoms/ArgonAtom.h
+        MDLib/PreBuilt/Worlds/ArgonGasWorld.h
 
         MDLib/BasicObjects/BasicBody.h
-        MDLib/BasicObjects/ThreeDimValue.h
+        MDLib/MathObjects/ThreeDimValue.h
         MDLib/BasicObjects/BasicWorld.h
 
         MDLib/PhysicalObjects/BodyWithForceField.h
         MDLib/PhysicalObjects/MultiBodyWorld.h
         MDLib/PhysicalObjects/Lennard_Jones_potential.h
 
-        MDLib/MathObjects/BasicIntegrator.h
-        MDLib/MathObjects/VerletIntegrator.h
+        MDLib/MathObjects/Integrators/BasicIntegrator.h
+        MDLib/MathObjects/Integrators/VerletIntegrator.h
         MDLib/MathObjects/DistributionFunctions.h
 
-        )
+        MDLib/MathObjects/Constraints/PeriodicBoundryRect.h)
 
 add_executable(MD_Objective_test
         UnitTest/test.cpp
         MDLib/MDLib.h
 
-        MDLib/Argon/ArgonAtom.h
-        MDLib/Argon/ArgonGasWorld.h
-        MDLib/Argon/SpringAtoms.h
-        MDLib/Argon/SpringWorld.h
+        MDLib/PreBuilt/Atoms/ArgonAtom.h
+        MDLib/PreBuilt/Worlds/ArgonGasWorld.h
+        MDLib/PreBuilt/Atoms/SpringAtoms.h
+        MDLib/PreBuilt/Worlds/SpringWorld.h
 
         MDLib/BasicObjects/BasicBody.h
-        MDLib/BasicObjects/ThreeDimValue.h
+        MDLib/MathObjects/ThreeDimValue.h
         MDLib/BasicObjects/BasicWorld.h
 
         MDLib/PhysicalObjects/BodyWithForceField.h
         MDLib/PhysicalObjects/MultiBodyWorld.h
         MDLib/PhysicalObjects/Lennard_Jones_potential.h
 
-        MDLib/MathObjects/BasicIntegrator.h
-        MDLib/MathObjects/VerletIntegrator.h
+        MDLib/MathObjects/Integrators/BasicIntegrator.h
+        MDLib/MathObjects/Integrators/VerletIntegrator.h
         MDLib/MathObjects/DistributionFunctions.h
+        MDLib/MathObjects/Constraints/MultiConstraint.h
+
+
         )

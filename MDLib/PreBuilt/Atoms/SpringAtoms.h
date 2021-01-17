@@ -4,8 +4,8 @@
 
 #ifndef MD_OBJECTIVE_TEST_SPRINGATOMS_H
 #define MD_OBJECTIVE_TEST_SPRINGATOMS_H
-#include "../PhysicalObjects/BodyWithForceField.h"
-#include "../BasicObjects/ThreeDimValue.h"
+#include "../../PhysicalObjects/BodyWithForceField.h"
+#include "../../MathObjects/ThreeDimValue.h"
 
 class SpringAtom:public BodyWithForceField<double>{
 
@@ -19,6 +19,7 @@ public:
             else{
                 ThreeDimValue<double> rp = (Position - body.Position);
                 return k*rp;
+                //return {0,0,0};
             }
         };
 

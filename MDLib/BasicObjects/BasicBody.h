@@ -8,7 +8,7 @@
 #ifndef MD_OBJECTIVE_BASICBODY_H
 #define MD_OBJECTIVE_BASICBODY_H
 
-#include "ThreeDimValue.h"
+#include "../MathObjects/ThreeDimValue.h"
 
 template<typename ValType>
 struct BasicBody{

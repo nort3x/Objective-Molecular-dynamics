@@ -6,8 +6,8 @@
 #define MD_OBJECTIVE_TEST_VERLETINTEGRATOR_H
 
 #include "BasicIntegrator.h"
-#include "../PhysicalObjects/MultiBodyWorld.h"
-#include "../PhysicalObjects/BodyWithForceField.h"
+#include "../../PhysicalObjects/MultiBodyWorld.h"
+#include "../../PhysicalObjects/BodyWithForceField.h"
 
 
 template <typename T,typename K>
@@ -30,13 +30,13 @@ public:
     ~VerletIntegrator() override{
     };
 
-    void timeElapse(const K &dt)override{
-        FirstIteration(dt);
+    void timeElapse(const K &dt_1)override{
+        FirstIteration(dt_1);
     }
 
 private:
 
-    void FirstIteration(const K& dt){
+    void FirstIteration(const K& dt_1){
         // ehsan method!
         for (int i = 0; i < world->getSize(); ++i) {
             world->BodyList[i].Velocity += 0.5*dt*(world->BodyList[i].Acceleration);

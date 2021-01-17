@@ -6,7 +6,7 @@
 #define MD_OBJECTIVE_ARGONATOM_H
 
 
-#include "../PhysicalObjects/Lennard_Jones_potential.h"
+#include "../../PhysicalObjects/Lennard_Jones_potential.h"
 
 
 struct ArgonAtom:public BodyWithLJP<double>{

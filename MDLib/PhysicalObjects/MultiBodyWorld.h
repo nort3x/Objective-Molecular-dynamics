@@ -8,8 +8,8 @@
 #include "BodyWithForceField.h"
 #include "../MathObjects/DistributionFunctions.h"
 #include "../Enums/Integrators.h"
-#include "../MathObjects/BasicIntegrator.h"
-#include "../MathObjects/BasicConstraint.h"
+#include "../MathObjects/Integrators/BasicIntegrator.h"
+#include "../MathObjects/Constraints/BasicConstraint.h"
 
 template <typename BodyType,typename percision>
 class MultiBodyWorld:public BasicWorld<BodyType>{
@@ -21,7 +21,7 @@ protected:
     BasicConstraint<BodyType> *constraint = nullptr;
 public:
 
-    explicit MultiBodyWorld(const unsigned int& NumberOfBodies, const percision& BoxLength): BasicWorld<BodyType>(NumberOfBodies){
+    explicit MultiBodyWorld(const unsigned int& NumberOfBodies): BasicWorld<BodyType>(NumberOfBodies){
         static_assert(std::is_base_of<BodyWithForceField<percision>,BodyType>::value,"Should Be a Forced Body type" );
         this->BoxLength = BoxLength;
     }
@@ -64,8 +64,8 @@ public:
         }
     }
 
-    void setDynamics(const percision & dt,BasicIntegrator<percision> *heap_alloc_basicintegrator_type,BasicConstraint<BodyType>* constraint){
-        this->constraint = constraint;
+    void setDynamics(const percision & dt,BasicIntegrator<percision> *heap_alloc_basicintegrator_type,BasicConstraint<BodyType>* _constraint){
+        this->constraint = _constraint;
         basicIntegrator = heap_alloc_basicintegrator_type;
         basicIntegrator->init();
     }

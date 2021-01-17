@@ -5,17 +5,17 @@
 #ifndef MD_OBJECTIVE_ARGONGASWORLD_H
 #define MD_OBJECTIVE_ARGONGASWORLD_H
 
-#include "../PhysicalObjects/MultiBodyWorld.h"
-#include "ArgonAtom.h"
-#include "../Enums/Integrators.h"
-#include "../MathObjects/BasicIntegrator.h"
-#include "../MathObjects/VerletIntegrator.h"
+#include "../../PhysicalObjects/MultiBodyWorld.h"
+#include "../Atoms/ArgonAtom.h"
+#include "../../Enums/Integrators.h"
+#include "../../MathObjects/Integrators/BasicIntegrator.h"
+#include "../../MathObjects/Integrators/VerletIntegrator.h"
 
 class ArgonGasWorld: public MultiBodyWorld<ArgonAtom,double>{
 
 public:
 
-    ArgonGasWorld(const unsigned int &numberOfBodies,double BoxLength) : MultiBodyWorld<ArgonAtom,double>(numberOfBodies, BoxLength){
+    ArgonGasWorld(const unsigned int &numberOfBodies) : MultiBodyWorld<ArgonAtom,double>(numberOfBodies){
         this->BoxLength = BoxLength;
     }
 

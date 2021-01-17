@@ -7,7 +7,7 @@
 
 #include <functional>
 #include <cmath>
-#include "../BasicObjects/ThreeDimValue.h"
+#include "ThreeDimValue.h"
 
 enum DistributionFunction{
     Boltzmann,
