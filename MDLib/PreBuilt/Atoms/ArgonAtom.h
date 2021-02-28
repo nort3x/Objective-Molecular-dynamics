@@ -16,7 +16,7 @@ struct ArgonAtom:public BodyWithLJP<double>{
     constexpr static const double eps = 1;
     constexpr static const double rc = 1;
     // more stuff
-    ArgonAtom() : BodyWithLJP(eps) {
+    ArgonAtom() : BodyWithLJP(eps,1) {
 
     }
     ArgonAtom(const ArgonAtom& atm):BodyWithLJP<double>(atm){

@@ -12,6 +12,7 @@
 #define MD_OBJECTIVE_BASICWORLD_H
 #include <stdexcept>
 #include <cstring>
+#include "BasicBody.h"
 
 template<typename ValType> class BasicWorld {
 protected:
@@ -32,7 +33,7 @@ public:
      BasicWorld(const BasicWorld<ValType>& bw){     //copy constructor
         size = bw.size;
         BodyList = new ValType[size];
-        std::memcpy(BodyList,bw.BodyList,bw.size);
+        std::memcpy(BodyList,bw.BodyList,bw.size*sizeof(ValType));
     }
     ~BasicWorld(){                        // destructor
         delete [] BodyList;

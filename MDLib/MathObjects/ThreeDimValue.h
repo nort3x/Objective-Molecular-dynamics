@@ -1,7 +1,6 @@
 //
 // Created by -H on 1/6/21.
 //
-
 /*
    i Created this struct to unify a value type to be used in vectoral dynamics
  */

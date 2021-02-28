@@ -22,7 +22,7 @@ public:
         int n2 =  body.Position.x2/box_len;
         int n3 =  body.Position.x3/box_len;
 
-        if( std::abs(body.Position.x1 >= box_len) ){
+        if( std::abs(body.Position.x1) >= box_len ){
             if(body.Position.x1<0){
                 body.Position.x1  = -box_len +std::fmod(std::abs(body.Position.x1),box_len);
             } else{
@@ -30,7 +30,7 @@ public:
             }
         }
 
-        if( std::abs(body.Position.x2 >= box_len) ){
+        if( std::abs(body.Position.x2 )>= box_len) {
             if(body.Position.x2<0){
                 body.Position.x2  = -box_len +std::fmod(std::abs(body.Position.x2),box_len);
             } else{
@@ -38,7 +38,7 @@ public:
             }
         }
 
-        if( std::abs(body.Position.x3 >= box_len) ){
+        if( std::abs(body.Position.x3) >= box_len) {
             if(body.Position.x3<0){
                 body.Position.x3  = -box_len +std::fmod(std::abs(body.Position.x3),box_len);
             }else{

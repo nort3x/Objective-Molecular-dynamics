@@ -15,7 +15,7 @@ class ArgonGasWorld: public MultiBodyWorld<ArgonAtom,double>{
 
 public:
 
-    ArgonGasWorld(const unsigned int &numberOfBodies) : MultiBodyWorld<ArgonAtom,double>(numberOfBodies){
+    ArgonGasWorld(const unsigned int &numberOfBodies ,const double& BoxLength ) : MultiBodyWorld<ArgonAtom,double>(numberOfBodies){
         this->BoxLength = BoxLength;
     }
 
