@@ -31,7 +31,7 @@ template <typename ValType> struct BodyWithLJP: BodyWithForceField<ValType>{
             } else{
                 ThreeDimValue<double> rmrp = Position - body.Position; // grifiths style big R
                 ValType check = rmrp.getNormSqure();
-                if( check<=near_cutoffSq || check >= far_cutoffSq){ 
+                if( check<=near_cutoffSq || check >= far_cutoffSq){
                     return {0,0,0};
                 }else{
                     ThreeDimValue<double> ans = (24*eps*sigma_6)*( sigma_6*2*std::pow(check,-7)-std::pow(check,-4) )*rmrp;
