@@ -75,7 +75,7 @@ bool ArgonAtomTest(){
 }
 
 bool GasWorld_test(){
-    MultiBodyWorld<ArgonAtom,double> gw(10, 10);
+    MultiBodyWorld<ArgonAtom,double> gw(10);
     gw.RandomizePosition();
     return true;
 }

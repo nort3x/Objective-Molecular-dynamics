@@ -35,12 +35,17 @@ public:
         return time;
     }
 
+    static percision random_norm_unit(){
+        return ((percision)std::rand()-((percision)RAND_MAX/2))/RAND_MAX;
+    }
+
     void RandomizePosition(percision rc=1){
         for(int i=1;i<=this->getSize();i++){
             TRY:
-            this->operator[](i).Position = {BoxLength*(percision)std::rand()/RAND_MAX,
-                                      BoxLength*(percision)std::rand()/RAND_MAX,
-                                      BoxLength*(percision)std::rand()/RAND_MAX };
+            this->operator[](i).Position = {BoxLength*random_norm_unit(),
+                                      BoxLength*random_norm_unit(),
+                                      BoxLength*random_norm_unit()
+            };
             if(BadChoiceOfPosition(i,rc))
                 goto TRY;
 
@@ -50,7 +55,7 @@ public:
 
     void RandomizeVelocity(percision VelocityMean){
         for (int i = 0; i <this->getSize() ; ++i) {
-            this->DirectAccess()[i].Velocity = (VelocityMean/this->getSize())*RandomNormalizedVector<percision>();
+            this->DirectAccess()[i].Velocity = (VelocityMean/std::sqrt(this->getSize()))*RandomNormalizedVector<percision>();
         }
     };
 
