@@ -52,7 +52,7 @@ bool BodyWithForceField_test(){
 }
 
 bool BodyWithLJP_test(){
-    BodyWithLJP<double> b1(12),b2(12);
+    BodyWithLJP<double> b1(12,12),b2(12,12);
     b1.Position = {1,1,1};
     b2.Position = {1.1,1,1};
     BodyWithLJP<double> b3(b1);
@@ -91,7 +91,7 @@ bool ArgonGasWorld_test(){
 }
 
 bool VerletTest(){
-    MultiBodyWorld<ArgonAtom,double> atm(10,10);
+    MultiBodyWorld<ArgonAtom,double> atm(10);
     atm.RandomizePosition();
     VerletIntegrator<ArgonAtom,double> v(&atm,0.01);
     v.timeElapse(0.01);

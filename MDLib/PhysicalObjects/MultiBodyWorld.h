@@ -63,8 +63,9 @@ public:
     void updateAccelerationField(){
         for (int i = 0; i < this->getSize(); ++i) {
             this->BodyList[i].Acceleration = {0,0,0};
-            for (int j = 0; j < this->getSize(); ++j) {
+            for (int j = 0; j < i; ++j) {
                 this->BodyList[i].Acceleration += this->BodyList[j].AcclerationField(this->BodyList[i], time);
+                this->BodyList[j].Acceleration = -1*this->BodyList[j].Acceleration;
             }
         }
     }
